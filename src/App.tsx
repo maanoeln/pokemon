@@ -1,5 +1,1 @@
-function App() {
-  return <>hello</>;
-}
-
-export default App;
+import WrapperComponent from './components/Wrapper';import GlobalStyle from './globalStyles';function App() {  return (    <>      <GlobalStyle />      <WrapperComponent>        <div>hello</div>        <div> hi</div>      </WrapperComponent>    </>  );}export default App;
