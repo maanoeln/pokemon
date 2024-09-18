@@ -23,11 +23,12 @@ function PokemonItemComponent({ id, name, onClick }: IProps) {
         alt={name}
         height="100"
         z-index={1}
+        data-testid={name}
       />
       <PokemonName>{capitalizeFirstLetter(name)}</PokemonName>
 
       <ButtonContainer>
-        <Button>Favoritar</Button>
+        <Button primary={false}>Favoritar</Button>
         <Button primary onClick={() => onClick(name)}>
           + Detalhes
         </Button>
