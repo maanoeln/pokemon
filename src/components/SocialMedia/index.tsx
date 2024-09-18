@@ -5,7 +5,12 @@ function SocialMediaComponent() {
   return (
     <SocialMedia>
       {SOCIAL_MEDIA_ITEMS.map((elem) => (
-        <Link href={elem.href} key={elem.name} target="_blank" aria-label={elem.name}>
+        <Link
+          href={elem.href}
+          key={elem.name}
+          target="_blank"
+          aria-label={elem.name}
+        >
           {elem.icon}
         </Link>
       ))}
