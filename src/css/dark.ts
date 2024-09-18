@@ -8,8 +8,7 @@ const secondaryButtonBg = `#02DAC6`;
 const buttonText = `#000000`;
 const wrapperBg = `#121212`;
 
-export const getHighlight = (opacity: number) =>
-  `rgba(255,255,255, ${opacity || 1})`;
+export const getHighlight = (opacity: number) => `rgba(255,255,255, ${opacity || 1})`;
 const getMid = (opacity: number) => `rgba(34, 34, 34, ${opacity || 1})`;
 export const getDark = (opacity: number) => `rgba(17, 17, 17, ${opacity || 1})`;
 const getMatterhorn = (opacity: number) => `rgba(79,79,79, ${opacity || 1})`;
@@ -80,3 +79,5 @@ export const dark = {
   //   selectArrow: Arrow,
   // },
 };
+
+// TODO
