@@ -35,11 +35,13 @@ export const ButtonContainer = styled.div`
   gap: 0.8rem;
 `;
 
-export const Button = styled.div<{ primary?: boolean }>`
-  background-color: ${({ theme, primary }) =>
-    primary && theme.colors.primaryButtonBg};
-  color: ${({ theme, primary }) =>
-    primary ? theme.colors.buttonText : theme.colors.cardTitle};
+interface Props {
+  primary: boolean;
+}
+
+export const Button = styled.div<Props>`
+  background-color: ${({ theme, primary }) => primary && theme.colors.primaryButtonBg};
+  color: ${({ theme, primary }) => (primary ? theme.colors.buttonText : theme.colors.cardTitle)};
   border: none;
   outline: none;
   padding: 0.4rem;
@@ -49,8 +51,7 @@ export const Button = styled.div<{ primary?: boolean }>`
   text-align: center;
 
   &:hover {
-    background-color: ${({ theme, primary }) =>
-      !primary && theme.colors.cardTitle};
+    background-color: ${({ theme, primary }) => !primary && theme.colors.cardTitle};
     color: ${({ theme, primary }) => !primary && theme.colors.buttonText};
   }
 `;
