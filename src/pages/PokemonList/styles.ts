@@ -8,4 +8,5 @@ export const ListWrapper = styled.div`
   gap: 16px;
   overflow: hidden;
   overflow-y: scroll;
+  height: 100%;
 `;
