@@ -1,6 +1,5 @@
 import WrapperComponent from '@/components/Wrapper';
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 describe('Wrapper Componente', () => {
   it('Should show 2 children when there is some', () => {
