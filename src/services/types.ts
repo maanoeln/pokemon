@@ -4,8 +4,25 @@ export interface IPokemonItem {
 }
 
 export interface IGetPokemonList {
-  count: number;
-  next: string;
+  count: number | null;
+  next: string | null;
   previous: null | string;
   results: IPokemonItem[];
+}
+
+interface PokemonInfoTypes {
+  slot: number;
+  type: { name: string };
+}
+
+interface PokemonInfoAbilities {
+  ability: { name: string };
+}
+
+export interface IPokemonInfo {
+  height: number;
+  weight: number;
+  base_experience: number;
+  types: PokemonInfoTypes[];
+  abilities: PokemonInfoAbilities[];
 }
