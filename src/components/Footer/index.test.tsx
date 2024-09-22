@@ -1,5 +1,4 @@
 import { dark } from '@/css/dark.ts';
-import '@testing-library/jest-dom';
 import FooterComponent from './index.tsx';
 import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
