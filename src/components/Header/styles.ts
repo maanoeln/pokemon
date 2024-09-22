@@ -27,7 +27,11 @@ export const FavoriteButton = styled.button`
   border: none;
 
   &:hover {
-    transform: scale(1.1);
-    transition: transform ease-in-out 300ms;
+    cursor: pointer;
+  }
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.getDisabled(0.5)};
+    cursor: not-allowed;
   }
 `;
