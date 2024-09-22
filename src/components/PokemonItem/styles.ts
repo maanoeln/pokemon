@@ -12,7 +12,6 @@ export const PokemonCard = styled.div`
   &:hover {
     transform: scale(1.05);
     transition: transform ease-in-out 300ms;
-    cursor: pointer;
   }
 `;
 
@@ -21,6 +20,9 @@ export const PokemonId = styled.span`
   font-size: 1.4rem;
   position: relative;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const PokemonName = styled.h3`
@@ -32,29 +34,4 @@ export const PokemonName = styled.h3`
 export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 0.8rem;
-`;
-
-interface Props {
-  primary: boolean;
-}
-
-export const Button = styled.div<Props>`
-  background-color: ${({ theme, primary }) =>
-    primary && theme.colors.primaryButtonBg};
-  color: ${({ theme, primary }) =>
-    primary ? theme.colors.buttonText : theme.colors.cardTitle};
-  border: none;
-  outline: none;
-  padding: 0.4rem;
-  text-transform: uppercase;
-  border-radius: 4px;
-  flex: 1;
-  text-align: center;
-
-  &:hover {
-    background-color: ${({ theme, primary }) =>
-      !primary && theme.colors.cardTitle};
-    color: ${({ theme, primary }) => !primary && theme.colors.buttonText};
-  }
 `;
