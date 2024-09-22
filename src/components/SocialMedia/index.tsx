@@ -1,3 +1,4 @@
+import Icons from '@/components/Icons';
 import { SOCIAL_MEDIA_ITEMS } from '@/components/SocialMedia/socialMediaItems';
 import { Link, SocialMedia } from '@/components/SocialMedia/styles';
 
@@ -11,7 +12,7 @@ function SocialMediaComponent() {
           target="_blank"
           aria-label={elem.name}
         >
-          {elem.icon}
+          <Icons name={elem.name} viewBox="0 0 24 24" />
         </Link>
       ))}
     </SocialMedia>
