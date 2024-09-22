@@ -1,32 +1,36 @@
+import LoaderComponent from '@/components/Loader';
 import PokemonItemComponent from '@/components/PokemonItem';
+import useFetchApi from '@/hooks/useFetch';
 import { ListWrapper } from '@/pages/PokemonList/styles';
-import { getPokemons } from '@/services/api';
-import { parseResponseData } from '@/services/response/parser';
-import { IPokemonItem } from '@/services/types';
-import { useEffect, useState } from 'react';
+import { IGetPokemonList } from '@/services/types';
 import { useNavigate } from 'react-router-dom';
 
 function PokemonListPage() {
-  const [pokemonList, setPokemonList] = useState<IPokemonItem[]>([]);
   const navigate = useNavigate();
+  const { data, isLoading } = useFetchApi<IGetPokemonList>({
+    initialData: { count: 0, next: null, previous: null, results: [] },
+    params: {
+      offset: '0',
+      limit: '20',
+    },
+  });
 
-  useEffect(() => {
-    getPokemons().then((data) =>
-      setPokemonList(parseResponseData(data).results),
-    );
-  }, []);
-
-  const handleClickOnPokemon = (name: string) => {
-    navigate(`pokemon/${name}`);
+  const handleClickOnPokemon = () => (id: number, name: string) => {
+    navigate(`pokemon/${id}/${name}`);
   };
+
+  if (isLoading) {
+    return <LoaderComponent />;
+  }
 
   return (
     <ListWrapper>
-      {pokemonList.map((pokemon, idx) => (
+      {data.results.map((pokemon, idx) => (
         <PokemonItemComponent
+          key={pokemon.name}
           name={pokemon.name}
           id={idx + 1}
-          onClick={handleClickOnPokemon}
+          onClick={handleClickOnPokemon()}
         />
       ))}
     </ListWrapper>
