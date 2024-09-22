@@ -1,3 +1,4 @@
+import { IconDiv } from '@/components/Icons/styles';
 import styled from 'styled-components';
 
 export const SocialMedia = styled.div`
@@ -14,9 +15,14 @@ export const Link = styled.a`
   svg {
     width: 2rem;
     height: 2rem;
+    fill: #e2e2e2;
+  }
 
-    &:hover {
-      fill: ${({ theme }) => theme.colors.secondaryButtonBg};
+  ${IconDiv} {
+    svg {
+      &:hover {
+        fill: ${({ theme }) => theme.colors.secondaryButtonBg};
+      }
     }
   }
 `;
