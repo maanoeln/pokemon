@@ -3,7 +3,8 @@ const headerText = `#E4E4E4`;
 const cardBg = `#1E1E1E`;
 const cardInfo = `#A2A2A2`;
 const cardTitle = `#E2E2E2`;
-const primaryButtonBg = `#c38FFF`;
+const primaryButtonBgOpacity = `#c38FFF`;
+const primaryButtonBg = `rgba(195, 143, 255, 0.6)`;
 const secondaryButtonBg = `#02DAC6`;
 const buttonText = `#000000`;
 const wrapperBg = `#121212`;
@@ -12,7 +13,7 @@ export const getHighlight = (opacity: number) =>
   `rgba(255,255,255, ${opacity || 1})`;
 const getMid = (opacity: number) => `rgba(34, 34, 34, ${opacity || 1})`;
 export const getDark = (opacity: number) => `rgba(17, 17, 17, ${opacity || 1})`;
-const getMatterhorn = (opacity: number) => `rgba(79,79,79, ${opacity || 1})`;
+const getDisabled = (opacity: number) => `rgba(2, 218, 198, ${opacity || 1})`;
 
 export const dark = {
   colors: {
@@ -25,7 +26,8 @@ export const dark = {
     secondaryButtonBg,
     buttonText,
     wrapperBg,
-    getMatterhornWaikawaGrey: getMatterhorn,
+    primaryButtonBgOpacity,
+    getDisabled: getDisabled,
     getMidEastBay: getMid,
     getMidGhostWhite: getMid,
     getMidLavender: getMid,
