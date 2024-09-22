@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Footer = styled.div`
-  flex: 1;
   display: flex;
+  width: 100%;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.headerBg};
   border-top: rgba(255, 255, 255, 0.1) solid 1px;
