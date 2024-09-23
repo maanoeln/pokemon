@@ -7,7 +7,7 @@ interface IProps {
   height?: string;
   width?: string;
   onClick?(): void;
-  color: string;
+  color?: string;
 }
 
 function Icons({
