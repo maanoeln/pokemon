@@ -7,6 +7,7 @@ interface IProps {
   height?: string;
   width?: string;
   onClick?(): void;
+  color: string;
 }
 
 function Icons({
@@ -15,6 +16,7 @@ function Icons({
   width = '',
   height = '',
   onClick,
+  color,
 }: IProps) {
   return (
     <IconDiv onClick={onClick} data-testid={name}>
@@ -24,6 +26,7 @@ function Icons({
         xmlns="http://www.w3.org/2000/svg"
         width={width}
         height={height}
+        fill={color}
       >
         <path d={icons[name]} />
       </svg>
