@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 
 interface IProps {
   children: ReactNode;
+  pokemons?: PokemonState[];
 }
 
 export interface PokemonState {
@@ -19,45 +20,49 @@ interface InititalState {
   error: string | null;
 }
 
-const initialState: InititalState = {
-  pokemons: [],
-  error: null,
+const initialState = (pokemons?: PokemonState[]): InititalState => {
+  return {
+    pokemons: pokemons ? pokemons : [],
+    error: null,
+  };
 };
 
-const pokemonSlice = createSlice({
-  name: 'pokemon',
-  initialState,
-  reducers: {
-    addPokemon: {
-      reducer: (state, action: PayloadAction<PokemonState>) => {
-        if (state.pokemons.length < 10) {
-          state.pokemons.push(action.payload);
-        } else {
-          state.error = 'Você favoritou o máximo de pokemons';
-          toast(state.error);
-        }
+const pokemonSlice = (pokemons?: PokemonState[]) =>
+  createSlice({
+    name: 'pokemon',
+    initialState: initialState(pokemons),
+    reducers: {
+      addPokemon: {
+        reducer: (state, action: PayloadAction<PokemonState>) => {
+          if (state.pokemons.length < 10) {
+            state.pokemons.push(action.payload);
+          } else {
+            state.error = 'Você favoritou o máximo de pokemons';
+            toast(state.error);
+          }
+        },
+        prepare: (id: number, name: string) => ({
+          payload: {
+            id,
+            name,
+          } as PokemonState,
+        }),
       },
-      prepare: (id: number, name: string) => ({
-        payload: {
-          id,
-          name,
-        } as PokemonState,
-      }),
+      removePokemon(state, action: PayloadAction<number>) {
+        const index = state.pokemons.findIndex(
+          (pok) => pok.id === action.payload,
+        );
+        state.pokemons.splice(index, 1);
+      },
     },
-    removePokemon(state, action: PayloadAction<number>) {
-      const index = state.pokemons.findIndex(
-        (pok) => pok.id === action.payload,
-      );
-      state.pokemons.splice(index, 1);
-    },
-  },
-});
+  });
 
-const mockStore = configureStore({ reducer: pokemonSlice.reducer });
+const mockStore = (pokemons?: PokemonState[]) =>
+  configureStore({ reducer: pokemonSlice(pokemons).reducer });
 
-const RenderMockedComponent = ({ children }: IProps) => {
+const RenderMockedComponent = ({ children, pokemons }: IProps) => {
   return (
-    <Provider store={mockStore}>
+    <Provider store={mockStore(pokemons)}>
       <ThemeProvider theme={dark}>{children}</ThemeProvider>
     </Provider>
   );
