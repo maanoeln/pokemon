@@ -10,13 +10,16 @@ import { RootState } from '@/store/store';
 function HeaderComponent() {
   const pokemons = useSelector((state: RootState) => state.pokemons);
 
+  const favoriteNumbers: string =
+    pokemons.length > 0 ? `(${pokemons.length})` : '';
+
   return (
     <Header>
       <HeaderItems>
         <img src={pokemon} alt="Pokemon" width="150" data-testid="logo" />
 
         <FavoriteButton disabled={!pokemons.length}>
-          Favoritos ({pokemons.length})
+          Favoritos {favoriteNumbers}
         </FavoriteButton>
       </HeaderItems>
     </Header>
