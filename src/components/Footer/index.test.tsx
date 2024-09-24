@@ -1,4 +1,4 @@
-import { dark } from '@/css/dark.ts';
+import { dark } from '@/theme/dark.ts';
 import FooterComponent from './index.tsx';
 import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
