@@ -1,7 +1,7 @@
 import LoaderComponent from '@/components/Loader';
 import PokemonItemComponent from '@/components/PokemonItem';
 import useFetchApi from '@/hooks/useFetch';
-import { ListWrapper } from '@/pages/PokemonList/styles';
+import { ListWrapper, Wrapper } from '@/pages/PokemonList/styles';
 import { IGetPokemonList } from '@/services/types';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,16 +24,18 @@ function PokemonListPage() {
   }
 
   return (
-    <ListWrapper>
-      {data.results.map((pokemon, idx) => (
-        <PokemonItemComponent
-          key={pokemon.name}
-          name={pokemon.name}
-          id={idx + 1}
-          onClick={handleClickOnPokemon()}
-        />
-      ))}
-    </ListWrapper>
+    <Wrapper>
+      <ListWrapper>
+        {data.results.map((pokemon, idx) => (
+          <PokemonItemComponent
+            key={pokemon.name}
+            name={pokemon.name}
+            id={idx + 1}
+            onClick={handleClickOnPokemon()}
+          />
+        ))}
+      </ListWrapper>
+    </Wrapper>
   );
 }
 
