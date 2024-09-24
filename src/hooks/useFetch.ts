@@ -43,7 +43,6 @@ const useFetchApi = <T>({
       if (url) {
         try {
           const { data } = await getFn();
-          console.log(data);
           setData(data);
         } catch (e) {
           setError(true);

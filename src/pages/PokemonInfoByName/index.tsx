@@ -21,15 +21,17 @@ import {
 } from '@/pages/PokemonInfoByName/styles';
 import { IPokemonInfo } from '@/services/types';
 import { AppDispatch, RootState } from '@/store/store';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function PokemonInfoByName() {
   const { id, name } = useParams<{ id: string; name: string }>();
-  const { pokemons } = useSelector((state: RootState) => state);
+  const pokemons = useSelector((state: RootState) => state.pokemons);
   const dispatch = useDispatch<AppDispatch>();
   const url = `/pokemon/${name}`;
   const navigate = useNavigate();
+  const { t } = useTranslation(['flex', 'pokemon_types']);
 
   const isFavorite = isPokemonFavorite(pokemons, +id!);
 
@@ -81,28 +83,35 @@ function PokemonInfoByName() {
       <SpecsWrapper>
         <SpecsSubWrapper>
           <PokemonSpecs>
-            <PokemonSpecTitle>Informações básicas</PokemonSpecTitle>
-            <PokemonSpecInfo>Altura: {data.height}</PokemonSpecInfo>
-            <PokemonSpecInfo>Peso: {data.weight}</PokemonSpecInfo>
+            <PokemonSpecTitle>{t('basic_info')}</PokemonSpecTitle>
             <PokemonSpecInfo>
-              Experiência: {data.base_experience}
+              {t('height')}
+              {data.height}
+            </PokemonSpecInfo>
+            <PokemonSpecInfo>
+              {t('weight')}
+              {data.weight}
+            </PokemonSpecInfo>
+            <PokemonSpecInfo>
+              {t('experience')}
+              {data.base_experience}
             </PokemonSpecInfo>
           </PokemonSpecs>
 
           <PokemonSpecs>
-            <PokemonSpecTitle>Tipos</PokemonSpecTitle>
+            <PokemonSpecTitle>{t('types')}</PokemonSpecTitle>
             {data.types.map(({ slot, type }) => (
               <PokemonSpecInfo key={slot}>
-                {slot} - {type.name}
+                {slot} - {t(type.name, { ns: 'pokemon_types' })}
               </PokemonSpecInfo>
             ))}
           </PokemonSpecs>
 
           <PokemonSpecs>
-            <PokemonSpecTitle>Habilidades</PokemonSpecTitle>
+            <PokemonSpecTitle>{t('abilities')}</PokemonSpecTitle>
             {data.abilities.map(({ ability }) => (
               <PokemonSpecInfo key={ability.name}>
-                {ability.name}
+                {t(ability.name)}
               </PokemonSpecInfo>
             ))}
           </PokemonSpecs>
@@ -110,10 +119,10 @@ function PokemonInfoByName() {
 
         <ButtonContainer>
           <ButtonComponent padding handleGoBack={() => handleGoBack()}>
-            Voltar
+            {t('back')}
           </ButtonComponent>
           <ButtonComponent padding primary onClick={() => {}}>
-            Voltar
+            {t('back')}
           </ButtonComponent>
         </ButtonContainer>
       </SpecsWrapper>

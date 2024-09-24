@@ -4,6 +4,8 @@ import { ThemeProvider } from 'styled-components';
 import { dark } from '../src/css/dark';
 import { ReactNode } from 'react';
 import { toast } from 'react-toastify';
+import { I18nextProvider } from 'react-i18next';
+import i18next from '@/locales/i18next';
 
 interface IProps {
   children: ReactNode;
@@ -63,7 +65,9 @@ const mockStore = (pokemons?: PokemonState[]) =>
 const RenderMockedComponent = ({ children, pokemons }: IProps) => {
   return (
     <Provider store={mockStore(pokemons)}>
-      <ThemeProvider theme={dark}>{children}</ThemeProvider>
+      <I18nextProvider i18n={i18next}>
+        <ThemeProvider theme={dark}>{children}</ThemeProvider>
+      </I18nextProvider>
     </Provider>
   );
 };

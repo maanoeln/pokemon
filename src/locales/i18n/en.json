@@ -1,0 +1,43 @@
+{
+  "flex": {
+    "favorites": "Favorites",
+    "details": "Details",
+    "basic_info": "Basic information",
+    "height": "Height: ",
+    "weight": "Weight: ",
+    "experience": "Experience: ",
+    "types": "Types",
+    "abilities": "Abilities",
+    "back": "Back",
+    "settings": "Settings",
+    "languages": "Languages",
+    "pt_BR": "Portuguese",
+    "en_US": "English",
+    "theme": "Theme",
+    "dark": "Dark",
+    "light": "Light"
+  },
+  "pokemon_types": {
+    "normal": "Normal",
+    "fighting": "Fighting",
+    "flying": "Flying",
+    "poison": "Poison",
+    "ground": "Ground",
+    "rock": "Rock",
+    "bug": "Bug",
+    "ghost": "Ghost",
+    "steel": "Stell",
+    "fire": "Fire",
+    "water": "Water",
+    "grass": "Grass",
+    "electric": "Electric",
+    "psychic": "Psychic",
+    "ice": "Ice",
+    "dragon": "Dragon",
+    "dark": "Dark",
+    "fairy": "Fairy",
+    "stellar": "Stellar",
+    "unknown": "Unknown",
+    "shadow": "Shadow"
+  }
+}

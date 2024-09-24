@@ -5,8 +5,6 @@ export const IconDiv = styled.div`
   cursor: pointer;
 
   svg {
-    fill: #e2e2e2;
-
     &:hover {
       fill: red;
     }

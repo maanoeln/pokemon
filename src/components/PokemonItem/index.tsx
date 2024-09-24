@@ -12,6 +12,7 @@ import { handleFavorites } from '@/helpers/handleFavoritePokemons';
 import { returnFavoriteIconConfigs } from '@/helpers/returnFavoriteIconConfigs';
 import { formattedPokemnonId } from '@/helpers/returnFormattedPokemId';
 import { AppDispatch, RootState } from '@/store/store';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 interface IProps {
@@ -23,6 +24,7 @@ interface IProps {
 function PokemonItemComponent({ id, name, onClick }: IProps) {
   const pokemons = useSelector((state: RootState) => state.pokemons);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation('flex');
 
   const isFavorite = isPokemonFavorite(pokemons, id);
 
@@ -48,7 +50,7 @@ function PokemonItemComponent({ id, name, onClick }: IProps) {
 
       <ButtonContainer>
         <ButtonComponent primary onClick={() => onClick(id, name)}>
-          + Detalhes
+          {t('details')}
         </ButtonComponent>
       </ButtonContainer>
     </PokemonCard>
