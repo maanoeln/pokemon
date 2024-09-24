@@ -1,8 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
-import pokemonReducer from './pokemonSlice';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import pokemons from './pokemonSlice';
+import theme from './themeSlice';
+
+const reducers = combineReducers({ pokemons, theme });
 
 export const store = configureStore({
-  reducer: pokemonReducer,
+  reducer: reducers,
 });
 
 export type AppDispatch = typeof store.dispatch;
