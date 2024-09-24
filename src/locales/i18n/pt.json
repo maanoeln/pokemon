@@ -1,0 +1,43 @@
+{
+  "flex": {
+    "favorites": "Favoritos",
+    "details": "Detalhes",
+    "basic_info": "Informações básicas",
+    "height": "Altura: ",
+    "weight": "Peso: ",
+    "experience": "Experiência: ",
+    "types": "Tipos",
+    "abilities": "Habilidades",
+    "back": "Voltar",
+    "settings": "Configurações",
+    "languages": "Idiomas",
+    "pt_BR": "Português",
+    "en_US": "Inglês",
+    "theme": "Tema",
+    "dark": "Dark",
+    "light": "Light"
+  },
+  "pokemon_types": {
+    "normal": "Normal",
+    "fighting": "Lutador",
+    "flying": "Voador",
+    "poison": "Venenoso",
+    "ground": "Terrestre",
+    "rock": "Pedra",
+    "bug": "Inseto",
+    "ghost": "Fantasma",
+    "steel": "Ferro",
+    "fire": "Fogo",
+    "water": "Água",
+    "grass": "Grama",
+    "electric": "Elétrico",
+    "psychic": "Psíquico",
+    "ice": "Gelo",
+    "dragon": "Dragão",
+    "dark": "Sombrio",
+    "fairy": "Fada",
+    "stellar": "Estelar",
+    "unknown": "Desonhecido",
+    "shadow": "Sombra"
+  }
+}

@@ -24,8 +24,8 @@ function Icons({
         style={{ display: `flex`, flex: 1 }}
         viewBox={viewBox}
         xmlns="http://www.w3.org/2000/svg"
-        width={width}
-        height={height}
+        width={width || 0}
+        height={height || 0}
         fill={color}
       >
         <path d={icons[name]} />

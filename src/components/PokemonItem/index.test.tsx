@@ -25,9 +25,9 @@ describe('PokemonItem', () => {
 
     expect(screen.getByText(/#0001/i)).toBeInTheDocument();
     expect(screen.getByTestId('bulbassaur')).toBeInTheDocument();
-    expect(screen.getByText('+ Detalhes')).toBeInTheDocument();
+    expect(screen.getByText('Detalhes')).toBeInTheDocument();
 
-    await userEvent.click(screen.getByText('+ Detalhes'));
+    await userEvent.click(screen.getByText('Detalhes'));
     expect(mockOnClick).toHaveBeenCalledWith(1, 'bulbassaur');
   });
 

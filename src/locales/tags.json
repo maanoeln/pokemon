@@ -1,0 +1,14 @@
+{
+  "favorites": "Favoritos",
+  "details": "Detalhes",
+  "basic_info": "Informações básicas",
+  "height": "Altura",
+  "weight": "Peso",
+  "experience": "Experiência",
+  "types": "Tipos",
+  "habilities": "Habilidades",
+  "pokemon_types": {
+    "grass": "Grama",
+    "water": "Água"
+  }
+}
