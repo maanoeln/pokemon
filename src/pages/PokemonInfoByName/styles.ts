@@ -76,3 +76,8 @@ export const ButtonsContainer = styled.div`
   align-items: end;
   gap: 2rem;
 `;
+
+export const TypesWrapper = styled.div`
+  display: flex;
+  gap: 1.6em;
+`;
