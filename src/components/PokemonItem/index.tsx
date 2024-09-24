@@ -22,7 +22,7 @@ interface IProps {
 }
 
 function PokemonItemComponent({ id, name, onClick }: IProps) {
-  const pokemons = useSelector((state: RootState) => state.pokemons);
+  const pokemons = useSelector((state: RootState) => state.pokemons.pokemons);
   const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation('flex');
 
