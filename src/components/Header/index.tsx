@@ -12,8 +12,9 @@ import MenuComponent from '@/components/Menu';
 import { useTranslation } from 'react-i18next';
 
 function HeaderComponent() {
-  const pokemons = useSelector((state: RootState) => state.pokemons);
+  const pokemons = useSelector((state: RootState) => state.pokemons.pokemons);
   const { t } = useTranslation('flex');
+
   return (
     <Header>
       <HeaderItems>
