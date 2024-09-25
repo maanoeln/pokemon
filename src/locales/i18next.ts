@@ -15,17 +15,7 @@ i18next.init({
   interpolation: {
     escapeValue: false,
   },
-  react: { useSuspense: false },
-});
-
-i18next.services.pluralResolver.addRule(`pt_BR`, {
-  numbers: [1, 2],
-  plurals: (n: number) => Number(n > 1),
-});
-
-i18next.services.pluralResolver.addRule(`xx`, {
-  numbers: [1, 2],
-  plurals: (n: number) => Number(n > 1),
+  react: { nsMode: `default`, useSuspense: false, defaultTransParent: `div` },
 });
 
 export default i18next;
