@@ -2,6 +2,7 @@ import ButtonComponent from '@/components/Button';
 import Icons from '@/components/Icons';
 import LoaderComponent from '@/components/Loader';
 import { ButtonContainer } from '@/components/PokemonItem/styles';
+import PokemonTypeComponent from '@/components/PokemonType';
 import { capitalizeFirstLetter } from '@/helpers/capitalizeFirstLetter';
 import { isPokemonFavorite } from '@/helpers/getFavoritesPokemos';
 import { handleFavorites } from '@/helpers/handleFavoritePokemons';
@@ -18,6 +19,7 @@ import {
   SpecsWrapper,
   TitleWrapper,
   PokemonIdName,
+  TypesWrapper,
 } from '@/pages/PokemonInfoByName/styles';
 import { IPokemonInfo } from '@/services/types';
 import { AppDispatch, RootState } from '@/store/store';
@@ -27,11 +29,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 function PokemonInfoByName() {
   const { id, name } = useParams<{ id: string; name: string }>();
-  const pokemons = useSelector((state: RootState) => state.pokemons);
+  const pokemons = useSelector((state: RootState) => state.pokemons.pokemons);
   const dispatch = useDispatch<AppDispatch>();
   const url = `/pokemon/${name}`;
   const navigate = useNavigate();
-  const { t } = useTranslation(['flex', 'pokemon_types']);
+  const { t } = useTranslation('flex');
 
   const isFavorite = isPokemonFavorite(pokemons, +id!);
 
@@ -100,11 +102,11 @@ function PokemonInfoByName() {
 
           <PokemonSpecs>
             <PokemonSpecTitle>{t('types')}</PokemonSpecTitle>
-            {data.types.map(({ slot, type }) => (
-              <PokemonSpecInfo key={slot}>
-                {slot} - {t(type.name, { ns: 'pokemon_types' })}
-              </PokemonSpecInfo>
-            ))}
+            <TypesWrapper>
+              {data.types.map(({ slot, type }) => (
+                <PokemonTypeComponent key={slot} type={type.name} />
+              ))}
+            </TypesWrapper>
           </PokemonSpecs>
 
           <PokemonSpecs>

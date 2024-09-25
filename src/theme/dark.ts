@@ -5,15 +5,59 @@ const cardInfo = `#A2A2A2`;
 const cardTitle = `#E2E2E2`;
 const primaryButtonBgOpacity = `#c38FFF`;
 const primaryButtonBg = `rgba(195, 143, 255, 0.6)`;
-const secondaryButtonBg = `#02DAC6`;
+const secondaryButtonBg = `#03DAC5`;
 const buttonText = `#000000`;
 const wrapperBg = `#121212`;
+
+export const typeColors: { [key: string]: string } = {
+  fighting: ` #eb83a2`,
+  psychic: ` #fa878d`,
+  poison: ` #d7a1f0`,
+  dragon: ` #6597c2`,
+  ghost: ` #798ab8`,
+  dark: ` #8b8499`,
+  ground: ` #dea081`,
+  fire: ` #fcbc8b`,
+  fairy: ` #f7baf4`,
+  water: ` #7fa9d4`,
+  flying: ` #a1b0d1`,
+  normal: ` #c4c9cf`,
+  rock: ` #ccc3a7`,
+  electric: ` #c4b058`,
+  bug: ` #b0c77f`,
+  grass: ` #8fbf8c`,
+  ice: ` #a7d6ce`,
+  steel: ` #859fa8`,
+};
+
+export const typeTitleColors: { [key: string]: string } = {
+  fighting: ` #cc2b5b`,
+  psychic: ` #c4353c`,
+  poison: ` #9d39cc`,
+  dragon: ` #025296`,
+  ghost: ` #3052b0`,
+  dark: ` #493b66`,
+  ground: ` #d95b1c`,
+  fire: ` #fa7916`,
+  fairy: ` #e854e1`,
+  water: ` #0b73db`,
+  flying: ` #4075e6`,
+  normal: ` #5d636b`,
+  rock: ` #a69251`,
+  electric: ` #8a7222`,
+  bug: ` #73a112`,
+  grass: ` #2e9426`,
+  ice: ` #359484`,
+  steel: ` #196882`,
+};
 
 export const getHighlight = (opacity: number) =>
   `rgba(255,255,255, ${opacity || 1})`;
 const getMid = (opacity: number) => `rgba(34, 34, 34, ${opacity || 1})`;
 export const getDark = (opacity: number) => `rgba(17, 17, 17, ${opacity || 1})`;
 const getDisabled = (opacity: number) => `rgba(2, 218, 198, ${opacity || 1})`;
+const getTypeBgColor = (type: string) => typeColors[type];
+const getTypeTitleColor = (type: string) => typeTitleColors[type];
 
 export const dark = {
   colors: {
@@ -27,6 +71,8 @@ export const dark = {
     buttonText,
     wrapperBg,
     primaryButtonBgOpacity,
+    getTypeBgColor,
+    getTypeTitleColor,
     getDisabled: getDisabled,
     getMidEastBay: getMid,
     getMidGhostWhite: getMid,
