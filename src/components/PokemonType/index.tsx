@@ -12,7 +12,7 @@ function PokemonTypeComponent({ type }: IProps) {
       <Text $type={type}>{t(type)}</Text>
       <Image
         src="https://pokemoncalc.web.app/en/assets/pokeball.svg"
-        alt="caterpie"
+        alt={t(type)}
       />
     </TypeCard>
   );
