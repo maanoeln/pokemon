@@ -8,7 +8,7 @@ export const handleFavorites = (
   dispatch: AppDispatch,
 ) => {
   if (isFavorite) {
-    return dispatch(removePokemon(id));
+    return dispatch(removePokemon(name));
   }
   dispatch(addPokemon(id, name));
 };
