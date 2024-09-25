@@ -1,10 +1,11 @@
 import { MENU_ITEMS } from '@/components/Menu/menuItems';
 import { Item, Menu, SubHeader, Divider, Div } from '@/components/Menu/styles';
+import { AppDispatch } from '@/store/store';
 import { Settings } from '@mui/icons-material';
 import { Button, MenuItem } from '@mui/material';
-import i18next from 'i18next';
 import { createRef, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 
 function MenuComponent() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -12,6 +13,7 @@ function MenuComponent() {
   const open = Boolean(anchorEl);
   const { t } = useTranslation('flex');
   const buttonRef = createRef<HTMLButtonElement>();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     if (buttonRef) {
@@ -25,10 +27,6 @@ function MenuComponent() {
 
   const handleClose = () => {
     setAnchorEl(null);
-  };
-
-  const changeLanguage = (lang: string) => {
-    i18next.changeLanguage(lang);
   };
 
   return (
@@ -57,7 +55,7 @@ function MenuComponent() {
           sx: { width: elemWidth },
         }}
       >
-        {MENU_ITEMS.map((elem, idx) => (
+        {MENU_ITEMS(dispatch).map((elem, idx) => (
           <div key={`elem.title-${idx}`}>
             {idx === 1 && <Divider />}
             <SubHeader>{t(elem.title)}</SubHeader>
@@ -65,7 +63,7 @@ function MenuComponent() {
               {elem.items.map((item) => (
                 <MenuItem
                   key={item.name}
-                  onClick={() => changeLanguage(item.name)}
+                  onClick={() => elem.fn(item.name)}
                   sx={{ p: '6px 8px' }}
                 >
                   <Div>
