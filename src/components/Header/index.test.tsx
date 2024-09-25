@@ -21,8 +21,8 @@ describe('Header', () => {
     expect(screen.getByTestId('logo')).toBeInTheDocument();
     expect(screen.getByTestId('SettingsIcon')).toBeInTheDocument();
     expect(screen.getAllByRole('button')).toHaveLength(2);
-    expect(screen.getByText('Favoritos')).toBeInTheDocument();
-    expect(screen.getByText('Favoritos')).toBeDisabled();
+    expect(screen.getByText('Favorito')).toBeInTheDocument();
+    expect(screen.getByText('Favorito')).toBeDisabled();
     expect(screen.getByText('Configurações')).toBeInTheDocument();
     expect(screen.getByText('Configurações')).toBeEnabled();
     expect(container.querySelectorAll('span')[1]).toHaveClass(/-invisible/i);
@@ -32,7 +32,7 @@ describe('Header', () => {
     const { container } = render(returnComponent(pokemon));
 
     expect(screen.getByTestId('logo')).toBeInTheDocument();
-    expect(screen.getByText('Favoritos')).toBeEnabled();
+    expect(screen.getByText('Favorito')).toBeEnabled();
     expect(container.querySelectorAll('span')[1]).not.toHaveClass(
       /-invisible/i,
     );
