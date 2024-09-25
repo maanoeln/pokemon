@@ -24,9 +24,12 @@ const pokemonSlice = createSlice({
       reducer: (state, action: PayloadAction<PokemonState>) => {
         if (state.pokemons.length < 10) {
           state.pokemons.push(action.payload);
+          toast.success(
+            `Você adicionou o pokemons ${action.payload.name} ã sua lista de facoritos!`,
+          );
         } else {
           state.error = 'Você favoritou o máximo de pokemons';
-          toast(state.error);
+          toast.warn(state.error);
         }
       },
       prepare: (id: number, name: string) => ({
@@ -36,11 +39,15 @@ const pokemonSlice = createSlice({
         } as PokemonState,
       }),
     },
-    removePokemon(state, action: PayloadAction<number>) {
-      const index = state.pokemons.findIndex(
-        (pok) => pok.id === action.payload,
+    removePokemon(state, action: PayloadAction<string>) {
+      const filteredArray = state.pokemons.filter(
+        (elem) => elem.name !== action.payload,
       );
-      state.pokemons.splice(index, 1);
+
+      state.pokemons = filteredArray;
+      toast.error(
+        `Você excluiu o pokemons ${action.payload} da sua lista de facoritos!`,
+      );
     },
   },
 });
