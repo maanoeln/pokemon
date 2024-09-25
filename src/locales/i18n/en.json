@@ -1,6 +1,7 @@
 {
   "flex": {
-    "favorites": "Favorites",
+    "favorites_one": "Favorite",
+    "favorites_other": "Favorites",
     "details": "Details",
     "basic_info": "Basic information",
     "height": "Height: ",
