@@ -1,7 +1,7 @@
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
-import { dark } from '../src/css/dark';
+import { dark } from '../src/theme/dark';
 import { ReactNode } from 'react';
 import { toast } from 'react-toastify';
 import { I18nextProvider } from 'react-i18next';
@@ -60,7 +60,11 @@ const pokemonSlice = (pokemons?: PokemonState[]) =>
   });
 
 const mockStore = (pokemons?: PokemonState[]) =>
-  configureStore({ reducer: pokemonSlice(pokemons).reducer });
+  configureStore({
+    reducer: {
+      pokemons: pokemonSlice(pokemons).reducer,
+    },
+  });
 
 const RenderMockedComponent = ({ children, pokemons }: IProps) => {
   return (
