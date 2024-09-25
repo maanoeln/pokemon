@@ -28,7 +28,7 @@ function HeaderComponent() {
             data-testid="badge"
           >
             <FavoriteButton disabled={!pokemons.length}>
-              {t('favorites')}
+              {t('favorites', { count: pokemons.length })}
             </FavoriteButton>
           </Badge>
 
