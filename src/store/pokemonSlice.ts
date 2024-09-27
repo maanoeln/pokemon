@@ -7,12 +7,12 @@ export interface PokemonState {
 }
 
 interface InititalState {
-  pokemons: PokemonState[];
+  favoritePokemons: PokemonState[];
   error: string | null;
 }
 
 const initialState: InititalState = {
-  pokemons: [],
+  favoritePokemons: [],
   error: null,
 };
 
@@ -22,8 +22,8 @@ const pokemonSlice = createSlice({
   reducers: {
     addPokemon: {
       reducer: (state, action: PayloadAction<PokemonState>) => {
-        if (state.pokemons.length < 10) {
-          state.pokemons.push(action.payload);
+        if (state.favoritePokemons.length < 10) {
+          state.favoritePokemons.push(action.payload);
           toast.success(
             `Você adicionou o pokemons ${action.payload.name} ã sua lista de facoritos!`,
           );
@@ -40,11 +40,11 @@ const pokemonSlice = createSlice({
       }),
     },
     removePokemon(state, action: PayloadAction<string>) {
-      const filteredArray = state.pokemons.filter(
+      const filteredArray = state.favoritePokemons.filter(
         (elem) => elem.name !== action.payload,
       );
 
-      state.pokemons = filteredArray;
+      state.favoritePokemons = filteredArray;
       toast.error(
         `Você excluiu o pokemons ${action.payload} da sua lista de facoritos!`,
       );
