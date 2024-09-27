@@ -18,13 +18,13 @@ export interface PokemonState {
 }
 
 interface InititalState {
-  pokemons: PokemonState[];
+  favoritePokemons: PokemonState[];
   error: string | null;
 }
 
 const initialState = (pokemons?: PokemonState[]): InititalState => {
   return {
-    pokemons: pokemons ? pokemons : [],
+    favoritePokemons: pokemons ? pokemons : [],
     error: null,
   };
 };
@@ -36,8 +36,8 @@ const pokemonSlice = (pokemons?: PokemonState[]) =>
     reducers: {
       addPokemon: {
         reducer: (state, action: PayloadAction<PokemonState>) => {
-          if (state.pokemons.length < 10) {
-            state.pokemons.push(action.payload);
+          if (state.favoritePokemons.length < 10) {
+            state.favoritePokemons.push(action.payload);
           } else {
             state.error = 'Você favoritou o máximo de pokemons';
             toast(state.error);
@@ -51,10 +51,10 @@ const pokemonSlice = (pokemons?: PokemonState[]) =>
         }),
       },
       removePokemon(state, action: PayloadAction<number>) {
-        const index = state.pokemons.findIndex(
+        const index = state.favoritePokemons.findIndex(
           (pok) => pok.id === action.payload,
         );
-        state.pokemons.splice(index, 1);
+        state.favoritePokemons.splice(index, 1);
       },
     },
   });
