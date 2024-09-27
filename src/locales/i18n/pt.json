@@ -6,7 +6,7 @@
     "basic_info": "Informações básicas",
     "height": "Altura: ",
     "weight": "Peso: ",
-    "experience": "Experiência: ",
+    "base_experience": "Experiência: ",
     "types": "Tipos",
     "abilities": "Habilidades",
     "back": "Voltar",
@@ -16,7 +16,10 @@
     "en_US": "Inglês",
     "theme": "Tema",
     "dark": "Dark",
-    "light": "Light"
+    "light": "Light",
+    "next": "Próximo",
+    "previous": "Anterior",
+    "go_back_homepage": "Voltar ao início"
   },
   "pokemon_types": {
     "normal": "Normal",
