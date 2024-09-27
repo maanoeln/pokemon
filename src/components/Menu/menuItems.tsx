@@ -4,7 +4,7 @@ import brasil from '@/assets/img/brazil.png';
 import usa from '@/assets/img/usa.png';
 import i18next from 'i18next';
 import { AppDispatch } from '@/store/store';
-import { changeTheme } from '@/store/themeSlice';
+import { changeTheme, ITheme } from '@/store/themeSlice';
 
 export const MENU_ITEMS = (dispatch: AppDispatch): IMenuItems[] => [
   {
@@ -24,7 +24,7 @@ export const MENU_ITEMS = (dispatch: AppDispatch): IMenuItems[] => [
       { name: 'light', icon: <LightMode sx={{ fontSize: '20px' }} /> },
       { name: 'dark', icon: <DarkMode sx={{ fontSize: '20px' }} /> },
     ],
-    fn: (theme: string) => dispatch(changeTheme(theme)),
+    fn: (theme: ITheme) => dispatch(changeTheme(theme)),
   },
 ];
 
