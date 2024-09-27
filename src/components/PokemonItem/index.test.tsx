@@ -28,7 +28,7 @@ describe('PokemonItem', () => {
     expect(screen.getByText('Detalhes')).toBeInTheDocument();
 
     await userEvent.click(screen.getByText('Detalhes'));
-    expect(mockOnClick).toHaveBeenCalledWith(1, 'bulbassaur');
+    expect(mockOnClick).toHaveBeenCalledWith(1);
   });
 
   it('Should render heart not filled sucessfully', async () => {
