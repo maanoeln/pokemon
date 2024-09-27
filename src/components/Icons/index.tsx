@@ -13,8 +13,8 @@ interface IProps {
 function Icons({
   name,
   viewBox = '0 0 16 16',
-  width = '',
-  height = '',
+  width = '20px',
+  height = '20px',
   onClick,
   color,
 }: IProps) {
@@ -24,8 +24,8 @@ function Icons({
         style={{ display: `flex`, flex: 1 }}
         viewBox={viewBox}
         xmlns="http://www.w3.org/2000/svg"
-        width={width || 0}
-        height={height || 0}
+        width={width}
+        height={height}
         fill={color}
       >
         <path d={icons[name]} />
