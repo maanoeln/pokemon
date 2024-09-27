@@ -5,7 +5,7 @@ import { PropsWithChildren } from 'react';
 import { RootState } from '@/store/store';
 
 const Theme = ({ children }: PropsWithChildren) => {
-  const theme = useSelector((state: RootState) => state.theme.theme);
+  const theme = useSelector((state: RootState) => state.theme);
 
   return <ThemeProvider theme={themes[theme]}>{children}</ThemeProvider>;
 };
