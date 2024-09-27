@@ -12,7 +12,9 @@ import MenuComponent from '@/components/Menu';
 import { useTranslation } from 'react-i18next';
 
 function HeaderComponent() {
-  const pokemons = useSelector((state: RootState) => state.pokemons.pokemons);
+  const pokemons = useSelector(
+    (state: RootState) => state.pokemons.favoritePokemons,
+  );
   const { t } = useTranslation('flex');
 
   return (
@@ -21,16 +23,17 @@ function HeaderComponent() {
         <img src={pokemon} alt="Pokemon" width="150" data-testid="logo" />
 
         <FlexDiv>
-          <Badge
-            color="primary"
-            badgeContent={pokemons.length}
-            invisible={!pokemons.length}
-            data-testid="badge"
-          >
-            <FavoriteButton disabled={!pokemons.length}>
-              {t('favorites', { count: pokemons.length })}
-            </FavoriteButton>
-          </Badge>
+          {!!pokemons.length && (
+            <Badge
+              color="primary"
+              badgeContent={pokemons.length}
+              data-testid="badge"
+            >
+              <FavoriteButton>
+                {t('favorites', { count: pokemons.length })}
+              </FavoriteButton>
+            </Badge>
+          )}
 
           <MenuComponent />
         </FlexDiv>

@@ -26,6 +26,7 @@ export const HeaderItems = styled.div`
 export const FavoriteButton = styled.button`
   background-color: ${({ theme }) => theme.colors.secondaryButtonBg};
   color: ${({ theme }) => theme.colors.buttonText};
+  font-weight: 500;
   padding: 8px;
   border-radius: 4px;
   outline: none;

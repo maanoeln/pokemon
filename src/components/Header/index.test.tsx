@@ -16,16 +16,14 @@ const returnComponent = (pokemons?: PokemonState[]) => {
 
 describe('Header', () => {
   it('ensure header componenet renders successfully and does not have a favorite pokemon', async () => {
-    const { container } = render(returnComponent());
+    render(returnComponent());
 
     expect(screen.getByTestId('logo')).toBeInTheDocument();
     expect(screen.getByTestId('SettingsIcon')).toBeInTheDocument();
-    expect(screen.getAllByRole('button')).toHaveLength(2);
-    expect(screen.getByText('Favorito')).toBeInTheDocument();
-    expect(screen.getByText('Favorito')).toBeDisabled();
+    expect(screen.getAllByRole('button')).toHaveLength(1);
+    expect(screen.queryByText('Favorito')).not.toBeInTheDocument();
     expect(screen.getByText('Configurações')).toBeInTheDocument();
     expect(screen.getByText('Configurações')).toBeEnabled();
-    expect(container.querySelectorAll('span')[1]).toHaveClass(/-invisible/i);
   });
 
   it('ensure header componenet renders successfully and does have a favorite pokemon text should change', () => {

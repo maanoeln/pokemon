@@ -18,11 +18,13 @@ import { useDispatch, useSelector } from 'react-redux';
 interface IProps {
   id: number;
   name: string;
-  onClick(id: number, name: string): void;
+  onClick(id: number): void;
 }
 
 function PokemonItemComponent({ id, name, onClick }: IProps) {
-  const pokemons = useSelector((state: RootState) => state.pokemons.pokemons);
+  const pokemons = useSelector(
+    (state: RootState) => state.pokemons.favoritePokemons,
+  );
   const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation('flex');
 
@@ -49,7 +51,7 @@ function PokemonItemComponent({ id, name, onClick }: IProps) {
       <PokemonName>{capitalizeFirstLetter(name)}</PokemonName>
 
       <ButtonContainer>
-        <ButtonComponent primary onClick={() => onClick(id, name)}>
+        <ButtonComponent primary onClick={() => onClick(id)}>
           {t('details')}
         </ButtonComponent>
       </ButtonContainer>

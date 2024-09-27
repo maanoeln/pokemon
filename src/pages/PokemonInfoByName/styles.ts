@@ -32,16 +32,6 @@ export const PokemonCard = styled.div`
   align-items: center;
 `;
 
-export const PokemonSpecs = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 16px;
-  border: 1px solid black;
-  border-radius: 8px;
-  background-color: ${({ theme }) => theme.colors.cardBg};
-`;
-
 export const TitleWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -55,29 +45,7 @@ export const PokemonIdName = styled.h1`
   margin: auto;
 `;
 
-export const PokemonSpecTitle = styled.h4`
-  font-size: 1.8rem;
-  color: ${({ theme }) => theme.colors.cardInfo};
-`;
-
 export const PokemonSpecInfo = styled.h2`
   font-size: 1.4rem;
   color: ${({ theme }) => theme.colors.cardTitle};
-`;
-
-export const ButtonsWrapper = styled.div`
-  display: flex;
-  align-items: end;
-  gap: 16px;
-`;
-
-export const ButtonsContainer = styled.div`
-  display: flex;
-  align-items: end;
-  gap: 2rem;
-`;
-
-export const TypesWrapper = styled.div`
-  display: flex;
-  gap: 1.6em;
 `;
