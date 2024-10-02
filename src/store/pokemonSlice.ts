@@ -25,7 +25,7 @@ const pokemonSlice = createSlice({
         if (state.favoritePokemons.length < 10) {
           state.favoritePokemons.push(action.payload);
           toast.success(
-            `Você adicionou o pokemons ${action.payload.name} ã sua lista de facoritos!`,
+            `Você adicionou o pokemon ${action.payload.name} ã sua lista de favoritos!`,
           );
         } else {
           state.error = 'Você favoritou o máximo de pokemons';
@@ -44,10 +44,8 @@ const pokemonSlice = createSlice({
         (elem) => elem.name !== action.payload,
       );
 
-      state.favoritePokemons = filteredArray;
-      toast.error(
-        `Você excluiu o pokemons ${action.payload} da sua lista de facoritos!`,
-      );
+      toast.error(`Você excluiu o pokemon ${action.payload} dos favoritos!`);
+      return { ...state, favoritePokemons: filteredArray };
     },
   },
 });
