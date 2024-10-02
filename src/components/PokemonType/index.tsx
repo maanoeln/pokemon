@@ -1,18 +1,24 @@
-import { Image, TypeCard, Text } from '@/components/PokemonType/styles';
+import Icons from '@/components/Icons';
+import { TypeCard, Text } from '@/components/PokemonType/styles';
 import { useTranslation } from 'react-i18next';
 
 interface IProps {
   type: string;
+  style?: { width: string; height: string };
 }
 
-function PokemonTypeComponent({ type }: IProps) {
+function PokemonTypeComponent({ type, style }: IProps) {
   const { t } = useTranslation('pokemon_types');
   return (
-    <TypeCard $type={type}>
+    <TypeCard $type={type} style={style}>
       <Text $type={type}>{t(type)}</Text>
-      <Image
-        src="https://pokemoncalc.web.app/en/assets/pokeball.svg"
-        alt={t(type)}
+      <Icons
+        name={type}
+        width="80px"
+        height="80px"
+        color="#FFF"
+        fillRule="evenodd"
+        clipRule="evenodd"
       />
     </TypeCard>
   );
