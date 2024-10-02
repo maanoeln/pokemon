@@ -27,5 +27,3 @@ export interface IPokemonInfo {
   types: PokemonInfoTypes[];
   abilities: PokemonInfoAbilities[];
 }
-
-export type IGetPokemonTypes = IGetPokemonList;
