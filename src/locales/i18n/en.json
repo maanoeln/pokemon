@@ -1,7 +1,6 @@
 {
   "flex": {
-    "favorites_one": "Favorite",
-    "favorites_other": "Favorites",
+    "favorites": "Favorites",
     "details": "Details",
     "basic_info": "Basic information",
     "height": "Height: ",
@@ -19,7 +18,8 @@
     "light": "Light",
     "next": "Next",
     "previous": "Previous",
-    "go_back_homepage": "Go back to homepage"
+    "go_back_homepage": "Go back to homepage",
+    "home": "Home"
   },
   "pokemon_types": {
     "normal": "Normal",
