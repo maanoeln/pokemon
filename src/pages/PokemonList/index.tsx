@@ -1,4 +1,4 @@
-import LoaderComponent from '@/components/Loader';
+import InitialTransition from '@/components/InitialTransition';
 import PaginationComponent from '@/components/Pagination';
 import PokemonItemComponent from '@/components/PokemonItem';
 import useFetchApi from '@/hooks/useFetch';
@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 
 function PokemonListPage() {
   const [offset, setOffset] = useState<string>('0');
+  const [page, setPage] = useState<number>(1);
+
   const navigate = useNavigate();
   const { data, isLoading, refetch } = useFetchApi<IGetPokemonList>({
     initialData: { count: 0, next: null, previous: null, results: [] },
@@ -18,7 +20,6 @@ function PokemonListPage() {
     },
   });
 
-  const [page, setPage] = useState<number>(1);
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
     setOffset(((value - 1) * 20 + 1).toString());
@@ -26,7 +27,7 @@ function PokemonListPage() {
   };
 
   const handleClickOnPokemon = () => (id: number) => {
-    navigate(`pokemon/${id}`);
+    navigate(`${id}`);
   };
 
   function getNumberFromUrl(url: string): number {
@@ -36,28 +37,28 @@ function PokemonListPage() {
 
   const numberOfPages: number = data.count ? Math.ceil(data.count / 20) : 0;
 
-  if (isLoading) {
-    return <LoaderComponent />;
-  }
-
   return (
-    <Wrapper>
-      <ListWrapper>
-        {data.results.map((pokemon) => (
-          <PokemonItemComponent
-            key={pokemon.name}
-            name={pokemon.name}
-            id={getNumberFromUrl(pokemon.url)}
-            onClick={handleClickOnPokemon()}
+    <>
+      {isLoading && <InitialTransition isLoading={isLoading} />}
+      <Wrapper>
+        <ListWrapper>
+          {data.results.map((pokemon) => (
+            <PokemonItemComponent
+              key={pokemon.name}
+              name={pokemon.name}
+              id={getNumberFromUrl(pokemon.url)}
+              onClick={handleClickOnPokemon()}
+            />
+          ))}
+
+          <PaginationComponent
+            numberOfPages={numberOfPages}
+            page={page}
+            handleChange={handleChange}
           />
-        ))}
-        <PaginationComponent
-          numberOfPages={numberOfPages}
-          page={page}
-          handleChange={handleChange}
-        />
-      </ListWrapper>
-    </Wrapper>
+        </ListWrapper>
+      </Wrapper>
+    </>
   );
 }
 

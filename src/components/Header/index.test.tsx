@@ -1,54 +1,31 @@
 import HeaderComponent from '@/components/Header';
-import RenderMockedComponent from '../../../mocks/createComponentWithStore';
-import { render, screen, waitFor } from '@testing-library/react';
-import { PokemonState } from '@/store/pokemonSlice';
+import { returnMockWithProviders } from '../../../mocks/createComponentWithStore';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
-const pokemon = [{ id: 1, name: 'bulbassaur' }];
-
-const returnComponent = (pokemons?: PokemonState[]) => {
-  return (
-    <RenderMockedComponent pokemons={pokemons}>
-      <HeaderComponent />
-    </RenderMockedComponent>
-  );
-};
+import { mockNavigate } from '@/setupTests';
 
 describe('Header', () => {
   it('ensure header componenet renders successfully and does not have a favorite pokemon', async () => {
-    render(returnComponent());
+    returnMockWithProviders(<HeaderComponent />);
 
     expect(screen.getByTestId('logo')).toBeInTheDocument();
     expect(screen.getByTestId('SettingsIcon')).toBeInTheDocument();
-    expect(screen.getAllByRole('button')).toHaveLength(1);
-    expect(screen.queryByText('Favorito')).not.toBeInTheDocument();
-    expect(screen.getByText('Configurações')).toBeInTheDocument();
-    expect(screen.getByText('Configurações')).toBeEnabled();
-  });
-
-  it('ensure header componenet renders successfully and does have a favorite pokemon text should change', () => {
-    const { container } = render(returnComponent(pokemon));
-
-    expect(screen.getByTestId('logo')).toBeInTheDocument();
-    expect(screen.getByText('Favorito')).toBeEnabled();
-    expect(container.querySelectorAll('span')[1]).not.toHaveClass(
-      /-invisible/i,
-    );
-    expect(screen.getByTestId('badge')).toBeInTheDocument();
-    expect(screen.getByText('1')).toBeInTheDocument();
+    expect(screen.getAllByRole('button')).toHaveLength(4);
+    expect(screen.getByText('Settings')).toBeInTheDocument();
+    expect(screen.getByText('Settings')).toBeEnabled();
   });
 
   it('ensure when user click on settings it opens the menu', async () => {
-    render(returnComponent(pokemon));
+    returnMockWithProviders(<HeaderComponent />);
 
-    const settings = screen.getByText('Configurações');
+    const settings = screen.getByText('Settings');
     await userEvent.click(settings);
 
     await waitFor(async () => {
-      expect(screen.getByText('Idiomas')).toBeInTheDocument();
-      expect(screen.getByText('Português')).toBeInTheDocument();
-      expect(screen.getByText('Inglês')).toBeInTheDocument();
-      expect(screen.getByText('Tema')).toBeInTheDocument();
+      expect(screen.getByText('Languages')).toBeInTheDocument();
+      expect(screen.getByText('Portuguese')).toBeInTheDocument();
+      expect(screen.getByText('English')).toBeInTheDocument();
+      expect(screen.getByText('Theme')).toBeInTheDocument();
       expect(screen.getByText('Dark')).toBeInTheDocument();
       expect(screen.getByText('Light')).toBeInTheDocument();
       expect(screen.getByAltText('USA')).toBeInTheDocument();
@@ -58,18 +35,41 @@ describe('Header', () => {
     });
   });
 
-  it('user should be able to change language', async () => {
-    render(returnComponent(pokemon));
-
-    const settings = screen.getByText('Configurações');
+  it('user should be able to change theme', async () => {
+    returnMockWithProviders(<HeaderComponent />);
+    const settings = screen.getByText('Settings');
     await userEvent.click(settings);
 
     await waitFor(async () => {
-      expect(screen.getByText('Idiomas')).toBeInTheDocument();
+      expect(screen.getByText('Light')).toBeInTheDocument();
     });
 
-    await userEvent.click(screen.getByText('Inglês'));
-    expect(screen.queryByText('Idiomas')).not.toBeInTheDocument();
-    expect(screen.getByText('Languages')).toBeInTheDocument();
+    const theme = screen.getByText('Light');
+    await userEvent.click(theme);
+  });
+
+  it('when user click on menu item should call function', async () => {
+    returnMockWithProviders(<HeaderComponent />);
+    const home = screen.getByText('Home');
+    await userEvent.click(home);
+
+    expect(mockNavigate).toHaveBeenCalled();
+    expect(mockNavigate).toHaveBeenCalledTimes(1);
+    expect(mockNavigate).toHaveBeenCalledWith('');
+  });
+
+  it('user should be able to change language', async () => {
+    returnMockWithProviders(<HeaderComponent />);
+
+    const settings = screen.getByText('Settings');
+    await userEvent.click(settings);
+
+    await waitFor(async () => {
+      expect(screen.getByText('Languages')).toBeInTheDocument();
+    });
+
+    await userEvent.click(screen.getByText('Portuguese'));
+    expect(screen.queryByText('Languages')).not.toBeInTheDocument();
+    expect(screen.getByText('Idiomas')).toBeInTheDocument();
   });
 });

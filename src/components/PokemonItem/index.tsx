@@ -44,14 +44,17 @@ function PokemonItemComponent({ id, name, onClick }: IProps) {
       <img
         src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${id}.svg`}
         alt={name}
-        height="100"
         z-index={1}
         data-testid={name}
       />
       <PokemonName>{capitalizeFirstLetter(name)}</PokemonName>
 
       <ButtonContainer>
-        <ButtonComponent primary onClick={() => onClick(id)}>
+        <ButtonComponent
+          primary
+          onClick={() => onClick(id)}
+          data-testid={`details-${id}`}
+        >
           {t('details')}
         </ButtonComponent>
       </ButtonContainer>

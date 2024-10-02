@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-export const Header = styled.div`
+export const Header = styled.header`
   background-color: ${({ theme }) => theme.colors.headerBg};
   height: 80px;
   border-bottom: rgba(255, 255, 255, 0.1) solid 1px;
   padding: 1.2rem;
+  z-index: 3;
 
   & .MuiList-root {
     color: 'white';

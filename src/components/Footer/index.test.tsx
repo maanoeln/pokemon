@@ -1,24 +1,16 @@
-import { dark } from '@/theme/dark.ts';
 import FooterComponent from './index.tsx';
-import { render, screen } from '@testing-library/react';
-import { ThemeProvider } from 'styled-components';
+import { screen } from '@testing-library/react';
+import { returnMockWithProviders } from '../../../mocks/createComponentWithStore.tsx';
 
-const mockWithTheme = () => {
-  return (
-    <ThemeProvider theme={dark}>
-      <FooterComponent />
-    </ThemeProvider>
-  );
-};
 describe('Footer Componet', () => {
   it('Should render successfully with all icons', () => {
-    const { container } = render(mockWithTheme());
+    const { container } = returnMockWithProviders(<FooterComponent />);
 
     expect(container.querySelectorAll('svg')).toHaveLength(3);
   });
 
   it('Should render successfully with developers name', () => {
-    render(mockWithTheme());
+    returnMockWithProviders(<FooterComponent />);
 
     expect(screen.getByText(/Manoel Neto/i)).toBeDefined();
     expect(screen.getByText(/Manoel Neto/i)).toBeInTheDocument();

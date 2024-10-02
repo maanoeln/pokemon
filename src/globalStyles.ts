@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -o-box-sizing: border-box;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
 
     ::-webkit-scrollbar {
       border-radius: 10px;
@@ -37,8 +38,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    height: 100vh;
     background-color: ${({ theme }) => theme.colors.wrapperBg};
+    height: 100vh;
   }
 
   #root {

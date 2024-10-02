@@ -1,17 +1,10 @@
 import LoaderComponent from '@/components/Loader';
-import { render, screen } from '@testing-library/react';
-import RenderMockedComponent from '../../../mocks/createComponentWithStore';
+import { screen } from '@testing-library/react';
+import { returnMockWithProviders } from '../../../mocks/createComponentWithStore';
 
-const returnComponent = () => {
-  return (
-    <RenderMockedComponent>
-      <LoaderComponent />
-    </RenderMockedComponent>
-  );
-};
 describe('Loader', () => {
   it('loader component renders successfully', () => {
-    render(returnComponent());
+    returnMockWithProviders(<LoaderComponent isLoading />);
 
     expect(screen.getByTestId('bars-loading')).toBeInTheDocument();
   });

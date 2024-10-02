@@ -9,6 +9,10 @@ export const PokemonCard = styled.div`
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.cardBg};
 
+  img {
+    height: 100px;
+  }
+
   &:hover {
     transform: scale(1.05);
     transition: transform ease-in-out 300ms;
@@ -19,7 +23,6 @@ export const PokemonId = styled.span`
   color: ${({ theme }) => theme.colors.cardInfo};
   font-size: 1.4rem;
   position: relative;
-  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;

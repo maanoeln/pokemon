@@ -1,23 +1,35 @@
 import App from '@/App';
+import FavoritesPage from '@/pages/Favorites';
 import PokemonInfoByName from '@/pages/PokemonInfoByName';
 import PokemonListPage from '@/pages/PokemonList';
-import { createBrowserRouter } from 'react-router-dom';
+import PokemonTypesPage from '@/pages/PokemonTypes';
+import { createBrowserRouter, RouteObject } from 'react-router-dom';
 
-const router = createBrowserRouter([
+export const routes: RouteObject[] = [
   {
     element: <App />,
     children: [
       {
-        path: '/',
+        path: '',
         index: true,
         element: <PokemonListPage />,
       },
       {
-        path: '/pokemon/:id',
+        path: ':id',
         element: <PokemonInfoByName />,
+      },
+      {
+        path: 'favorites',
+        element: <FavoritesPage />,
+      },
+      {
+        path: 'types',
+        element: <PokemonTypesPage />,
       },
     ],
   },
-]);
+];
+
+const router = createBrowserRouter(routes, { basename: '/pokemons' });
 
 export default router;

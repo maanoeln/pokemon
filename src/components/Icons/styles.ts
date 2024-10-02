@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
-export const IconDiv = styled.div`
+interface IProps {
+  $isHeart: boolean;
+}
+
+export const IconDiv = styled.div<IProps>`
   display: flex;
   cursor: pointer;
 
   svg {
     &:hover {
-      fill: red;
+      fill: ${({ $isHeart }) => ($isHeart ? 'red' : '')};
     }
   }
 `;
