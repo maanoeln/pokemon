@@ -1,10 +1,14 @@
 import { LoaderWrapper } from '@/components/Loader/styles';
 import { Bars } from 'react-loader-spinner';
 
-function LoaderComponent() {
+interface IProps {
+  isLoading: boolean;
+}
+
+function LoaderComponent({ isLoading }: IProps) {
   return (
     <LoaderWrapper>
-      <Bars height="60" width="60" color="#E4E4E4" visible={true} />
+      <Bars height="150" width="150" color="#E4E4E4" visible={isLoading} />
     </LoaderWrapper>
   );
 }
