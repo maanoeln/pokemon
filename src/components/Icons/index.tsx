@@ -8,18 +8,24 @@ interface IProps {
   width?: string;
   onClick?(): void;
   color?: string;
+  fillRule?: 'evenodd';
+  clipRule?: string;
 }
 
 function Icons({
   name,
-  viewBox = '0 0 16 16',
-  width = '20px',
-  height = '20px',
+  viewBox = '0 0 512 512',
+  width = '50px',
+  height = '50px',
   onClick,
   color,
+  fillRule,
+  clipRule = '',
 }: IProps) {
+  const isHeart = !!(name === 'EmptyHeart' || name === 'FilledHeart');
+
   return (
-    <IconDiv onClick={onClick} data-testid={name}>
+    <IconDiv $isHeart={isHeart} onClick={onClick} data-testid={name}>
       <svg
         style={{ display: `flex`, flex: 1 }}
         viewBox={viewBox}
@@ -27,6 +33,8 @@ function Icons({
         width={width}
         height={height}
         fill={color}
+        fillRule={fillRule}
+        clipRule={clipRule}
       >
         <path d={icons[name]} />
       </svg>
