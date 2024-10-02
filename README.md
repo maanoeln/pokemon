@@ -5,7 +5,7 @@
 [![Run Tests](https://github.com/maanoeln/pokemon/actions/workflows/main.yml/badge.svg)](https://github.com/maanoeln/pokemon/actions/workflows/main.yml)
 [![Coverage Status](https://coveralls.io/repos/github/maanoeln/pokemon/badge.svg?branch=main)](https://coveralls.io/github/maanoeln/pokemon?branch=main)
 
-helllo its me
+Pokedex Project
 
 
 
