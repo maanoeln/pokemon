@@ -22,7 +22,10 @@ interface PokemonInfoAbilities {
 export interface IPokemonInfo {
   height: number;
   weight: number;
+  name: string;
   base_experience: number;
   types: PokemonInfoTypes[];
   abilities: PokemonInfoAbilities[];
 }
+
+export type IGetPokemonTypes = IGetPokemonList;
