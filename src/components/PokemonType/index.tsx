@@ -5,9 +5,10 @@ import { useTranslation } from 'react-i18next';
 interface IProps {
   type: string;
   style?: { width: string; height: string };
+  isType?: boolean;
 }
 
-function PokemonTypeComponent({ type, style }: IProps) {
+function PokemonTypeComponent({ type, style, isType }: IProps) {
   const { t } = useTranslation('pokemon_types');
   return (
     <TypeCard $type={type} style={style}>
@@ -19,6 +20,7 @@ function PokemonTypeComponent({ type, style }: IProps) {
         color="#FFF"
         fillRule="evenodd"
         clipRule="evenodd"
+        isType={isType}
       />
     </TypeCard>
   );
