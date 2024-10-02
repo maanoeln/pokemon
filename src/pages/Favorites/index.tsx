@@ -7,6 +7,7 @@ import {
   Wrapper,
 } from '@/pages/Favorites/styles';
 import { RootState } from '@/store/store';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,6 +16,7 @@ function FavoritesPage() {
   const pokemons = useSelector(
     (state: RootState) => state.pokemons.favoritePokemons,
   );
+  const { t } = useTranslation('flex');
 
   const handleClickOnPokemon = () => (id: number) => {
     navigate(`/${id}`);
@@ -23,8 +25,8 @@ function FavoritesPage() {
   return (
     <Wrapper>
       <TitleWrapper>
-        <Text $primary>Favoritos</Text>
-        <Text>Você pode favoritar no máximo 10 pokemons</Text>
+        <Text $primary>{t('favorites')}</Text>
+        <Text>{t('favorite_message')}</Text>
       </TitleWrapper>
       <ListWrapper>
         {pokemons.length ? (
@@ -38,7 +40,7 @@ function FavoritesPage() {
           ))
         ) : (
           <NoDataContainer>
-            <Text $primary>Você ainda não favoritou nenhum pokemon</Text>
+            <Text $primary>{t('no_favorites')}</Text>
           </NoDataContainer>
         )}
       </ListWrapper>
