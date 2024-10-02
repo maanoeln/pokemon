@@ -14,7 +14,7 @@ function PokemonSpecsButtons({ id }: IProps) {
   const isButtonDisabled = !!id && +id === 1;
 
   const handleNavigate = (id?: string) => {
-    const url = id ? `/pokemon/${id}` : `/`;
+    const url = id ? `/${id}` : `/`;
     navigate(url);
   };
 
