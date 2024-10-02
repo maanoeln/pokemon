@@ -1,7 +1,7 @@
 import ButtonComponent from '@/components/Button';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import RenderMockedComponent from '../../../mocks/createComponentWithStore';
+import { returnMockWithProviders } from '../../../mocks/createComponentWithStore';
 
 interface IProps {
   primary?: boolean;
@@ -18,21 +18,15 @@ const returnComponent = ({
   ...rest
 }: IProps) => {
   return (
-    <RenderMockedComponent>
-      <ButtonComponent {...rest} primary={primary} padding={padding}>
-        {children}
-      </ButtonComponent>
-    </RenderMockedComponent>
+    <ButtonComponent {...rest} primary={primary} padding={padding}>
+      {children}
+    </ButtonComponent>
   );
 };
 
 describe('Button', () => {
   it('should render button correctly', () => {
-    render(
-      returnComponent({
-        children: 'Botão',
-      }),
-    );
+    returnMockWithProviders(returnComponent({ children: 'Botão' }));
 
     expect(screen.getByText('Botão')).toBeInTheDocument();
   });
@@ -40,11 +34,8 @@ describe('Button', () => {
   it('when have onclick function should call it', async () => {
     const mockOnClick = jest.fn();
 
-    render(
-      returnComponent({
-        children: 'Botão',
-        onClick: mockOnClick,
-      }),
+    returnMockWithProviders(
+      returnComponent({ children: 'Botão', onClick: mockOnClick }),
     );
 
     const button = screen.getByText('Botão');
@@ -55,9 +46,11 @@ describe('Button', () => {
   it('when have handleGoBack function should call it', async () => {
     const mockHandleGoBack = jest.fn();
 
-    render(
+    returnMockWithProviders(
       returnComponent({
         children: 'Botão',
+        primary: true,
+        padding: true,
         handleGoBack: mockHandleGoBack,
       }),
     );
@@ -70,12 +63,8 @@ describe('Button', () => {
   });
 
   it('when prop primary passed should have another color', () => {
-    render(
-      returnComponent({
-        children: 'Botão',
-        primary: true,
-        padding: true,
-      }),
+    returnMockWithProviders(
+      returnComponent({ children: 'Botão', primary: true, padding: true }),
     );
 
     expect(screen.getByRole('button')).toHaveStyleRule(

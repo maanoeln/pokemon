@@ -1,20 +1,16 @@
 import PokemonSpecInfoComponent from '@/components/PokemonSpecsInfo';
-import { render, screen } from '@testing-library/react';
-import RenderMockedComponent from '../../../mocks/createComponentWithStore';
-
-const renderComponent = (iconName?: string) => (
-  <RenderMockedComponent>
-    <PokemonSpecInfoComponent
-      name="altura"
-      value="1,50m"
-      iconName={iconName || undefined}
-    />
-  </RenderMockedComponent>
-);
+import { screen } from '@testing-library/react';
+import { returnMockWithProviders } from '../../../mocks/createComponentWithStore';
 
 describe('PokemonSpecInfoComponent', () => {
   it('Should render component correctly', () => {
-    render(renderComponent('height'));
+    returnMockWithProviders(
+      <PokemonSpecInfoComponent
+        name="altura"
+        value="1,50m"
+        iconName={'height'}
+      />,
+    );
 
     expect(screen.getByText('altura')).toBeInTheDocument();
     expect(screen.getByText('1,50m')).toBeInTheDocument();
@@ -22,7 +18,9 @@ describe('PokemonSpecInfoComponent', () => {
   });
 
   it('when icon name is not passes it should not render the svg', () => {
-    render(renderComponent());
+    returnMockWithProviders(
+      <PokemonSpecInfoComponent name="altura" value="1,50m" />,
+    );
 
     expect(screen.getByText('altura')).toBeInTheDocument();
     expect(screen.getByText('1,50m')).toBeInTheDocument();
