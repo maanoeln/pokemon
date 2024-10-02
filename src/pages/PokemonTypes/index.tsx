@@ -2,13 +2,13 @@ import InitialTransition from '@/components/InitialTransition';
 import PokemonTypeComponent from '@/components/PokemonType';
 import useFetchApi from '@/hooks/useFetch';
 import { ListWrapper, Wrapper } from '@/pages/PokemonList/styles';
-import { IGetPokemonTypes } from '@/services/types';
+import { IGetPokemonList } from '@/services/types';
 
 function PokemonTypesPage() {
-  const url = '/type';
-  const { data, isLoading } = useFetchApi<IGetPokemonTypes>({
-    url,
+  const url = 'type';
+  const { data, isLoading } = useFetchApi<IGetPokemonList>({
     initialData: { count: 0, next: null, previous: null, results: [] },
+    url,
   });
 
   return (
@@ -21,6 +21,7 @@ function PokemonTypesPage() {
               key={elem.name}
               type={elem.name}
               style={{ width: 'unset', height: 'unset' }}
+              isType
             />
           ))}
         </ListWrapper>
