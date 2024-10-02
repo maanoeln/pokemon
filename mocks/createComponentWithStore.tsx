@@ -1,79 +1,47 @@
-import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ReactElement, ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from 'styled-components';
-import { dark } from '../src/theme/dark';
-import { ReactNode } from 'react';
-import { toast } from 'react-toastify';
 import { I18nextProvider } from 'react-i18next';
 import i18next from '@/locales/i18next';
+import ThemeProvider from '@/theme/ThemeProvider';
+import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import { routes } from '@/router';
+import { AppStore, RootStore, setupStore } from '@/store/store';
+import { render } from '@testing-library/react';
 
 interface IProps {
-  children: ReactNode;
-  pokemons?: PokemonState[];
+  preloadedState?: Partial<RootStore>;
+  store?: AppStore;
 }
 
-export interface PokemonState {
-  id: number;
-  name: string;
+const routerMock = createMemoryRouter(routes, {
+  basename: '/pokemons',
+  initialEntries: [
+    '/pokemons',
+    '/pokemons/1',
+    '/pokemons/types',
+    '/pokemos/favorites',
+  ],
+  initialIndex: 0,
+});
+
+export function returnMockWithProviders(
+  ui?: ReactElement,
+  {
+    preloadedState = {},
+    store = setupStore(preloadedState),
+    ...renderOptions
+  }: IProps = {},
+) {
+  function Wrapper({ children }: { children?: ReactNode }): JSX.Element {
+    return (
+      <Provider store={store}>
+        <I18nextProvider i18n={i18next}>
+          <ThemeProvider>
+            {children ? children : <RouterProvider router={routerMock} />}
+          </ThemeProvider>
+        </I18nextProvider>
+      </Provider>
+    );
+  }
+  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 }
-
-interface InititalState {
-  favoritePokemons: PokemonState[];
-  error: string | null;
-}
-
-const initialState = (pokemons?: PokemonState[]): InititalState => {
-  return {
-    favoritePokemons: pokemons ? pokemons : [],
-    error: null,
-  };
-};
-
-const pokemonSlice = (pokemons?: PokemonState[]) =>
-  createSlice({
-    name: 'pokemon',
-    initialState: initialState(pokemons),
-    reducers: {
-      addPokemon: {
-        reducer: (state, action: PayloadAction<PokemonState>) => {
-          if (state.favoritePokemons.length < 10) {
-            state.favoritePokemons.push(action.payload);
-          } else {
-            state.error = 'Você favoritou o máximo de pokemons';
-            toast(state.error);
-          }
-        },
-        prepare: (id: number, name: string) => ({
-          payload: {
-            id,
-            name,
-          } as PokemonState,
-        }),
-      },
-      removePokemon(state, action: PayloadAction<number>) {
-        const index = state.favoritePokemons.findIndex(
-          (pok) => pok.id === action.payload,
-        );
-        state.favoritePokemons.splice(index, 1);
-      },
-    },
-  });
-
-const mockStore = (pokemons?: PokemonState[]) =>
-  configureStore({
-    reducer: {
-      pokemons: pokemonSlice(pokemons).reducer,
-    },
-  });
-
-const RenderMockedComponent = ({ children, pokemons }: IProps) => {
-  return (
-    <Provider store={mockStore(pokemons)}>
-      <I18nextProvider i18n={i18next}>
-        <ThemeProvider theme={dark}>{children}</ThemeProvider>
-      </I18nextProvider>
-    </Provider>
-  );
-};
-
-export default RenderMockedComponent;
