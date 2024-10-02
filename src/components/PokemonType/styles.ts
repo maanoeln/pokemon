@@ -6,7 +6,9 @@ interface IProps {
 
 export const TypeCard = styled.div<IProps>`
   position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: ${({ theme, $type }) =>
     theme.colors.getTypeBgColor($type) + 'FF'};
   border-radius: 0.8em;
@@ -14,6 +16,17 @@ export const TypeCard = styled.div<IProps>`
   width: 100px;
   overflow: hidden;
   z-index: 1;
+
+  svg {
+    opacity: 0.2;
+  }
+
+  &:hover {
+    cursor: pointer;
+    svg {
+      opacity: 0.5;
+    }
+  }
 `;
 
 export const Text = styled.h4<IProps>`
@@ -24,12 +37,4 @@ export const Text = styled.h4<IProps>`
   left: 50%;
   transform: translate(-50%, -50%);
   color: ${({ theme, $type }) => theme.colors.getTypeTitleColor($type)};
-`;
-
-export const Image = styled.img`
-  width: 100px;
-  z-index: 1;
-  opacity: 0.2;
-  filter: invert(2);
-  transform: rotate(45deg);
 `;
