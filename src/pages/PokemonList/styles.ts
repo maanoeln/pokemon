@@ -13,6 +13,6 @@ export const ListWrapper = styled.div`
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(4, 1fr);
   gap: 16px;
-  overflow-y: scroll;
-  height: 100%;
+  overflow-y: auto;
+  max-height: 100%;
 `;
