@@ -5,3 +5,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   height: 100%;
 `;
+
+export const MainContainer = styled.main`
+  flex: 1;
+  height: calc(100% - 160px);
+`;
