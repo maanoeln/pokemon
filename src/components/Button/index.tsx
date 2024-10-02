@@ -14,12 +14,14 @@ function ButtonComponent({
   onClick,
   padding = false,
   primary = false,
+  ...props
 }: IProps) {
   return (
     <Button
       $primary={primary}
       $padding={padding}
       onClick={handleGoBack ? handleGoBack : onClick}
+      {...props}
     >
       {children}
     </Button>
