@@ -19,7 +19,9 @@
     "next": "Próximo",
     "previous": "Anterior",
     "go_back_homepage": "Voltar à homepage",
-    "home": "Início"
+    "home": "Início",
+    "favorite_message": "Você pode favoritar 10 pokemons",
+    "no_favorites": "Você não tem pokemons favoritados"
   },
   "pokemon_types": {
     "normal": "Normal",
