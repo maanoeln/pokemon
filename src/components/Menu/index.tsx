@@ -32,6 +32,7 @@ function MenuComponent() {
   return (
     <div>
       <Button
+        color="secondary"
         variant="outlined"
         endIcon={<Settings fontSize="medium" />}
         id="basic-button"
@@ -59,7 +60,7 @@ function MenuComponent() {
           <div key={`elem.title-${idx}`}>
             {idx === 1 && <Divider />}
             <SubHeader>{t(elem.title)}</SubHeader>
-            <div key={idx}>
+            <div>
               {elem.items.map((item) => (
                 <MenuItem
                   key={item.name}
