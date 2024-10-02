@@ -10,6 +10,7 @@ interface IProps {
   color?: string;
   fillRule?: 'evenodd';
   clipRule?: string;
+  isType?: boolean;
 }
 
 function Icons({
@@ -21,11 +22,16 @@ function Icons({
   color,
   fillRule,
   clipRule = '',
+  isType = false,
 }: IProps) {
   const isHeart = !!(name === 'EmptyHeart' || name === 'FilledHeart');
 
   return (
-    <IconDiv $isHeart={isHeart} onClick={onClick} data-testid={name}>
+    <IconDiv
+      $isHeart={isHeart}
+      onClick={onClick}
+      data-testid={isType ? `type-${name}` : `${name}`}
+    >
       <svg
         style={{ display: `flex`, flex: 1 }}
         viewBox={viewBox}
