@@ -78,8 +78,8 @@ describe('PokemonList', () => {
       expect(screen.getByText('Bulbasaur')).toBeInTheDocument();
     });
 
-    await userEvent.click(screen.getAllByTestId('EmptyHeart')[0]);
-    expect(screen.getByTestId('FilledHeart')).toBeInTheDocument();
+    await userEvent.click(screen.getAllByTestId(/EmptyHeart/)[0]);
+    expect(screen.getByTestId(/FilledHeart/)).toBeInTheDocument();
     expect(screen.getByText(/O pokemon/i)).toBeInTheDocument();
     expect(screen.getByText('Favorites')).toBeInTheDocument();
   });
@@ -103,11 +103,11 @@ describe('PokemonList', () => {
 
     await waitFor(() => {
       expect(screen.getByText('Bulbasaur')).toBeInTheDocument();
-      expect(screen.getAllByTestId('FilledHeart')).toHaveLength(10);
-      expect(screen.getAllByTestId('EmptyHeart')).toHaveLength(10);
+      expect(screen.getAllByTestId(/FilledHeart/i)).toHaveLength(10);
+      expect(screen.getAllByTestId(/EmptyHeart/i)).toHaveLength(10);
     });
 
-    await userEvent.click(screen.getAllByTestId('EmptyHeart')[0]);
+    await userEvent.click(screen.getAllByTestId(/EmptyHeart/i)[0]);
     expect(screen.getByText(/Você favoritou/i)).toBeInTheDocument();
   });
 
@@ -132,8 +132,8 @@ describe('PokemonList', () => {
       expect(screen.getByText('Bulbasaur')).toBeInTheDocument();
     });
 
-    expect(screen.getAllByTestId('FilledHeart')).toHaveLength(1);
-    await userEvent.click(screen.getAllByTestId('FilledHeart')[0]);
+    expect(screen.getAllByTestId(/FilledHeart/i)).toHaveLength(1);
+    await userEvent.click(screen.getAllByTestId(/FilledHeart/i)[0]);
 
     expect(screen.getByText(/Você excluiu o pokemon/i)).toBeInTheDocument();
   });

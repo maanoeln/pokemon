@@ -14,7 +14,7 @@ describe('PokemonSpecInfoComponent', () => {
 
     expect(screen.getByText('altura')).toBeInTheDocument();
     expect(screen.getByText('1,50m')).toBeInTheDocument();
-    expect(screen.getByTestId('height')).toBeInTheDocument();
+    expect(screen.getByTestId(/height/i)).toBeInTheDocument();
   });
 
   it('when icon name is not passes it should not render the svg', () => {

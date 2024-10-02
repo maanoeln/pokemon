@@ -101,6 +101,6 @@ describe('PokemonInfoByName', () => {
 
     const emptyHeart = await screen.findByTestId(/EmptyHeart/i);
     await userEvent.click(emptyHeart);
-    expect(await screen.findByTestId('FilledHeart')).toBeInTheDocument();
+    expect(await screen.findByTestId(/FilledHeart/i)).toBeInTheDocument();
   });
 });

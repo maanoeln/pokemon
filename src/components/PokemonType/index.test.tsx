@@ -7,6 +7,6 @@ describe('PokemonItem', () => {
     returnMockWithProviders(<PokemonTypeComponent type="fire" />);
 
     expect(screen.getByText('Fire')).toBeInTheDocument();
-    expect(screen.getByTestId('fire')).toBeInTheDocument();
+    expect(screen.getByTestId(/fire/i)).toBeInTheDocument();
   });
 });

@@ -30,7 +30,7 @@ describe('PokemonItem', () => {
       <PokemonItemComponent {...pokemonMock} onClick={mockOnClick} />,
     );
 
-    expect(screen.getByTestId('EmptyHeart')).toBeInTheDocument();
+    expect(screen.getByTestId(/EmptyHeart/i)).toBeInTheDocument();
   });
 
   it('When click on heart should call function and change image to filled heart', async () => {
@@ -40,13 +40,13 @@ describe('PokemonItem', () => {
       <PokemonItemComponent {...pokemonMock} onClick={mockOnClick} />,
     );
 
-    const emptyHeart = screen.getByTestId('EmptyHeart');
+    const emptyHeart = screen.getByTestId(/EmptyHeart/i);
     await userEvent.click(emptyHeart);
 
     await waitFor(() => {
       expect(spy).toHaveBeenCalled();
       expect(spy).toHaveBeenCalledTimes(1);
-      expect(screen.getByTestId('FilledHeart')).toBeInTheDocument();
+      expect(screen.getByTestId(/FilledHeart/i)).toBeInTheDocument();
     });
   });
 });

@@ -6,7 +6,7 @@ describe('Icons', () => {
   it('should render icons correctly', () => {
     returnMockWithProviders(<Icons name="Github" />);
 
-    expect(screen.getByTestId('Github')).toBeInTheDocument();
+    expect(screen.getByTestId(/Github/i)).toBeInTheDocument();
   });
 
   it('should render icons with custom viewbox', () => {
