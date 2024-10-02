@@ -4,7 +4,7 @@ import pt from './i18n/pt.json';
 import xx from './tags.json';
 
 i18next.init({
-  lng: `pt_BR`,
+  lng: 'en_US',
   fallbackLng: `xx`,
   debug: false,
   resources: {
